@@ -1,4 +1,4 @@
-CC = cl
+CC = cc
 OPENSSL_DIR = C:\OpenSSL-Win32
 PTHREADS_DIR = C:\pthreads-w32-2-8-0-release
 PCRE_DIR = C:\pcre-7.9-src
@@ -15,7 +15,7 @@ OBJS = vanitygen.obj oclvanitygen.obj oclengine.obj oclvanityminer.obj keyconv.o
 
 all: vanitygen.exe keyconv.exe
 
-vanitygen.exe: vanitygen.obj pattern.obj util.obj winglue.obj
+vanitygen.exe: vanitygen.o pattern.o util.o winglue.o
 	link /nologo /out:$@ $** $(LIBS)
 
 oclvanitygen.exe: oclvanitygen.obj oclengine.obj pattern.obj util.obj winglue.obj

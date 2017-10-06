@@ -29,7 +29,7 @@
 #include <openssl/ec.h>
 #include <openssl/obj_mac.h>
 
-#include <pcre.h>
+#include "pcre.h"
 
 #include "pattern.h"
 #include "util.h"
@@ -1392,6 +1392,14 @@ vg_prefix_context_add_patterns(vg_context_t *vcp,
 		case 5:
 			ats = "bitcoin script";
 			bw = "\"3\"";
+			break;
+		case 25:
+			ats = "sigt";
+			bw = "\"b\" or \"B\"";
+			break;
+		case 66:
+			ats = "trezarcoin";
+			bw = "\"T\"";
 			break;
 		case 111:
 			ats = "testnet";

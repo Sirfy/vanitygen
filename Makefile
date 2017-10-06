@@ -1,5 +1,5 @@
 LIBS=-lpcre -lcrypto -lm -lpthread
-CFLAGS=-ggdb -O3 -Wall
+CFLAGS=-LC:/CUDA/v3.2/lib/x64/ -ggdb -O3 -Wall -I/home/Administrator/OpenCL-Headers/opencl22
 OBJS=vanitygen.o oclvanitygen.o oclvanityminer.o oclengine.o keyconv.o pattern.o util.o
 PROGS=vanitygen keyconv oclvanitygen oclvanityminer
 
@@ -15,10 +15,10 @@ most: vanitygen keyconv
 
 all: $(PROGS)
 
-vanitygen: vanitygen.o pattern.o util.o
+vanitygen: winglue.o vanitygen.o pattern.o util.o
 	$(CC) $^ -o $@ $(CFLAGS) $(LIBS)
 
-oclvanitygen: oclvanitygen.o oclengine.o pattern.o util.o
+oclvanitygen: winglue.o oclvanitygen.o oclengine.o pattern.o util.o
 	$(CC) $^ -o $@ $(CFLAGS) $(LIBS) $(OPENCL_LIBS)
 
 oclvanityminer: oclvanityminer.o oclengine.o pattern.o util.o
